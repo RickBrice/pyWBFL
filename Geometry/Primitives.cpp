@@ -93,7 +93,7 @@ void export_primitives_types()
    bool(Rect2d:: * Rect2d_ContainsPoint)(const Point2d&) const = &Rect2d::Contains;
    bool(Rect2d:: * Rect2d_ContainsRect)(const Rect2d&) const = &Rect2d::Contains;
 
-   enum_<Rect2d::RelPosition>("RelPosition")
+   enum_<Rect2d::RelPosition>("Rect2d.RelPosition")
       .value("contains", Rect2d::RelPosition::Contains)
       .value("outside", Rect2d::RelPosition::Outside)
       .value("touches", Rect2d::RelPosition::Touches)
