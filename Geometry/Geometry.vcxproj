@@ -16,7 +16,7 @@
     <ProjectGuid>{ccbb1694-92dc-410f-8648-079a7ecea659}</ProjectGuid>
     <RootNamespace>pyGeometry</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>WBFLGeometry</ProjectName>
+    <ProjectName>Geometry</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -48,11 +48,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetExt>.pyd</TargetExt>
-    <OutDir>$(ARPDIR)\WBFL\RegFreeCOM\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(ARPDIR)\pyWBFL\WBFL\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetExt>.pyd</TargetExt>
-    <OutDir>$(ARPDIR)\WBFL\RegFreeCOM\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(ARPDIR)\pyWBFL\WBFL\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -103,13 +103,13 @@
       <AdditionalLibraryDirectories>$(PYTHONDIR)\libs;$(ARPDIR)\WBFL\RegFreeCOM\$(PlatformName)\$(ConfigurationName)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Command>xcopy /y/d $(BOOSTDIR)\stage\lib\boost_python310-vc143-mt-x64-1_79.dll $(ARPDIR)\BridgeLink\RegFreeCOM\$(Platform)\$(Configuration)\</Command>
+      <Command>xcopy /y/d $(BOOSTDIR)\stage\lib\boost_python310-vc143-mt-x64-1_79.dll $(ARPDIR)\pyWBFL\WBFL</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Message>Copying boost python to BridgeLink</Message>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Outputs>$(ARPDIR)\BridgeLink\RegFreeCOM\$(Platform)\$(Configuration)\boost_python310-vc143-mt-x64-1_79.dll</Outputs>
+      <Outputs>$(ARPDIR)\pyWBFL\WBFL\boost_python310-vc143-mt-x64-1_79.dll</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>

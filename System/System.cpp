@@ -18,5 +18,15 @@ BOOST_PYTHON_MODULE(System)
       .add_property("left", GetLeft, SetLeft)
       .add_property("right", GetRight, SetRight)
       .def("as_string",&SectionValue::AsString)
+      //.def(self = Float64()) // SectionValue& operator=(Float64 val);
+      .def(self += self)
+      .def(self -= self)
+      .def(self *= self)
+      .def(self /= self)
+      //.def(self -) // SectionValue  operator-();
+      .def(self += Float64())
+      .def(self -= Float64())
+      .def(self *= Float64())
+      .def(self /= Float64())
       ;
 }

@@ -4,7 +4,7 @@
 #include "Vector2d.h"
 
 
-BOOST_PYTHON_MODULE(WBFLGeometry)
+BOOST_PYTHON_MODULE(Geometry)
 {
    using namespace boost::python;
    export_primitives_types();
