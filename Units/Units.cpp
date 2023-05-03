@@ -3,10 +3,11 @@
 #include "Measure.h"
 #include "Convert.h"
 
-BOOST_PYTHON_MODULE(Units)
+namespace py = pybind11;
+
+PYBIND11_MODULE(Units,m)
 {
-   using namespace boost::python;
-   export_physical_types();
-   export_convert_types();
-   export_measure_types();
+   export_physical_types(m);
+   export_convert_types(m);
+   export_measure_types(m);
 }

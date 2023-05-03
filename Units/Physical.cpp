@@ -1,33 +1,33 @@
 #include "pch.h"
 #include "Physical.h"
 
-using namespace boost::python;
 using namespace WBFL::Units;
+namespace py = pybind11;
 
-void export_physical_types()
+void export_physical_types(py::module_& m)
 {
-   class_<Mass, boost::noncopyable>("Mass", no_init);
-   class_<Length, boost::noncopyable>("Length", no_init);
-   class_<Time, boost::noncopyable>("Time", no_init);
-   class_<Temperature, boost::noncopyable>("Temperature", no_init);
-   class_<Angle, boost::noncopyable>("Angle",no_init);
-   class_<Acceleration, boost::noncopyable>("Acceleration",no_init);
-   class_<MassPerLength, boost::noncopyable>("MassPerLength",no_init);
-   class_<Length2, boost::noncopyable>("Length2",no_init);
-   class_<Length3, boost::noncopyable>("Length3",no_init);
-   class_<Length4, boost::noncopyable>("Length4",no_init);
-   class_<Pressure, boost::noncopyable>("Pressure",no_init);
-   class_<UnitWeight, boost::noncopyable>("UnitWeight",no_init);
-   class_<Density, boost::noncopyable>("Density",no_init);
-   class_<Force, boost::noncopyable>("Force",no_init);
-   class_<ForcePerLength, boost::noncopyable>("ForcePerLength",no_init);
-   class_<Moment, boost::noncopyable>("Moment",no_init);
-   class_<MomentPerAngle, boost::noncopyable>("MomentPerAngle",no_init);
-   class_<SqrtPressure, boost::noncopyable>("SqrtPressure",no_init);
-   class_<PerLength, boost::noncopyable>("PerLength",no_init);
-   class_<ForceLength2, boost::noncopyable>("ForceLength2",no_init);
-   class_<Velocity, boost::noncopyable>("Velocity", no_init);
-   class_<Area, boost::noncopyable>("Area", no_init);
-   class_<Volume, boost::noncopyable>("Volume", no_init);
-   class_<AreaPerLength, boost::noncopyable>("AreaPerLength", no_init);
+   py::class_<Mass>(m, "Mass");
+   py::class_<Length>(m, "Length");
+   py::class_<Time>(m, "Time");
+   py::class_<Temperature>(m, "Temperature");
+   py::class_<Angle>(m, "Angle");
+   py::class_<Acceleration>(m, "Acceleration");
+   py::class_<MassPerLength>(m, "MassPerLength");
+   py::class_<Length2>(m, "Length2");
+   py::class_<Length3>(m, "Length3");
+   py::class_<Length4>(m, "Length4");
+   py::class_<Pressure>(m, "Pressure");
+   py::class_<UnitWeight>(m, "UnitWeight");
+   py::class_<Density>(m, "Density");
+   py::class_<Force>(m, "Force");
+   py::class_<ForcePerLength>(m, "ForcePerLength");
+   py::class_<Moment>(m, "Moment");
+   py::class_<MomentPerAngle>(m, "MomentPerAngle");
+   py::class_<SqrtPressure>(m, "SqrtPressure");
+   py::class_<PerLength>(m, "PerLength");
+   py::class_<ForceLength2>(m, "ForceLength2");
+   py::class_<Velocity>(m, "Velocity");
+   //py::class_<Area>(m, "Area");
+   //py::class_<Volume>(m, "Volume");
+   //py::class_<AreaPerLength>(m, "AreaPerLength");
 }

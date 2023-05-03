@@ -3,11 +3,11 @@
 #include "LineSegment2d.h"
 #include "Vector2d.h"
 
+namespace py = pybind11;
 
-BOOST_PYTHON_MODULE(Geometry)
+PYBIND11_MODULE(Geometry,m)
 {
-   using namespace boost::python;
-   export_primitives_types();
-   export_LineSegment2d_types();
-   export_Vector2d_types();
+   export_primitives_types(m);
+   export_LineSegment2d_types(m);
+   export_Vector2d_types(m);
 }

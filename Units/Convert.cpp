@@ -1,34 +1,34 @@
 #include "pch.h"
 #include "Convert.h"
 
-using namespace boost::python;
 using namespace WBFL::Units;
+namespace py = pybind11;
 
-void export_convert_types()
+void export_convert_types(py::module_& m)
 {
-   def("convert", Convert<Mass>);
-   def("convert", Convert<Length>);
-   def("convert", Convert<Time>);
-   def("convert", Convert<Temperature>);
-   def("convert", Convert<Angle>);
-   def("convert", Convert<Acceleration>);
-   def("convert", Convert<MassPerLength>);
-   def("convert", Convert<Length2>);
-   def("convert", Convert<Length3>);
-   def("convert", Convert<Length4>);
-   def("convert", Convert<Pressure>);
-   def("convert", Convert<UnitWeight>);
-   def("convert", Convert<Density>);
-   def("convert", Convert<Force>);
-   def("convert", Convert<ForcePerLength>);
-   def("convert", Convert<Moment>);
-   def("convert", Convert<MomentPerAngle>);
-   def("convert", Convert<SqrtPressure>);
-   def("convert", Convert<PerLength>);
-   def("convert", Convert<ForceLength2>);
-   def("convert", Convert<Velocity>);
-   def("convert", Convert<Area>);
-   def("convert", Convert<Volume>);
-   def("convert", Convert<Stress>);
-   def("convert", Convert<AreaPerLength>);
+   m.def("convert", Convert<Mass>);
+   m.def("convert", Convert<Length>);
+   m.def("convert", Convert<Time>);
+   m.def("convert", Convert<Temperature>);
+   m.def("convert", Convert<Angle>);
+   m.def("convert", Convert<Acceleration>);
+   m.def("convert", Convert<MassPerLength>);
+   m.def("convert", Convert<Length2>);
+   m.def("convert", Convert<Length3>);
+   m.def("convert", Convert<Length4>);
+   m.def("convert", Convert<Pressure>);
+   m.def("convert", Convert<UnitWeight>);
+   m.def("convert", Convert<Density>);
+   m.def("convert", Convert<Force>);
+   m.def("convert", Convert<ForcePerLength>);
+   m.def("convert", Convert<Moment>);
+   m.def("convert", Convert<MomentPerAngle>);
+   m.def("convert", Convert<SqrtPressure>);
+   m.def("convert", Convert<PerLength>);
+   m.def("convert", Convert<ForceLength2>);
+   m.def("convert", Convert<Velocity>);
+   m.def("convert", Convert<Area>);
+   m.def("convert", Convert<Volume>);
+   m.def("convert", Convert<Stress>);
+   m.def("convert", Convert<AreaPerLength>);
 }

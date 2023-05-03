@@ -1,3 +1,5 @@
 #pragma once
 
-void export_physical_types();
+namespace py = pybind11;
+class py::module_;
+void export_physical_types(py::module_& m);

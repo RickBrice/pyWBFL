@@ -1,43 +1,60 @@
 #include "pch.h"
 
+using namespace WBFL::Beams;
+namespace py = pybind11;
 
-BOOST_PYTHON_MODULE(Beams)
+PYBIND11_MODULE(Beams,m)
 {
-   using namespace boost::python;
-   using namespace WBFL::Beams;
-
-   struct RoarkBeamWrap : RoarkBeam, wrapper<RoarkBeam>
+   class PyRoarkBeam : public RoarkBeam
    {
-      //std::unique_ptr<RoarkBeam> CreateClone() const override { return this->get_override("clone")(); }
-      std::pair<Float64, Float64> GetReactions() const override { return this->get_override("reactions")(); }
-      std::pair<Float64, Float64> GetMoments() const override { return this->get_override("moments")(); }
-      std::pair<Float64, Float64> GetRotations() const override { return this->get_override("rotations")(); }
-      std::pair<Float64, Float64> GetDeflections() const override { return this->get_override("deflections")(); }
-      WBFL::System::SectionValue ComputeShear(Float64 x) const override { return this->get_override("shear")(x); }
-      WBFL::System::SectionValue ComputeMoment(Float64 x) const override { return this->get_override("moment")(x); }
-      //Float64 ComputeRotation(Float64 x) const override { return call<Float64>(this->get_override("rotation").ptr(),x); }
-      Float64 ComputeRotation(Float64 x) const override { return this->get_override("rotation")(x); }
-      Float64 ComputeDeflection(Float64 x) const override { return this->get_override("deflection")(x); }
+      using RoarkBeam::RoarkBeam; // Inherit constructors
+
+      using Result = std::pair<Float64, Float64>;
+      std::unique_ptr<RoarkBeam> CreateClone() const override { PYBIND11_OVERRIDE_PURE(std::unique_ptr<RoarkBeam>, RoarkBeam, CreateClone, /*no parameters*/); }
+      std::pair<Float64, Float64> GetReactions() const override { PYBIND11_OVERRIDE_PURE(Result, RoarkBeam, GetReactions, /*no parameters*/); }
+      std::pair<Float64, Float64> GetMoments() const override { PYBIND11_OVERRIDE_PURE(Result, RoarkBeam, GetMoments, /*no parameters*/); }
+      std::pair<Float64, Float64> GetRotations() const override { PYBIND11_OVERRIDE_PURE(Result, RoarkBeam, GetRotations, /*no parameters*/); }
+      std::pair<Float64, Float64> GetDeflections() const override { PYBIND11_OVERRIDE_PURE(Result, RoarkBeam, GetDeflections, /*no parameters*/); }
+      WBFL::System::SectionValue ComputeShear(Float64 x) const override { PYBIND11_OVERRIDE_PURE(WBFL::System::SectionValue, RoarkBeam, ComputeShear, x); }
+      WBFL::System::SectionValue ComputeMoment(Float64 x) const override { PYBIND11_OVERRIDE_PURE(WBFL::System::SectionValue, RoarkBeam, ComputeMoment, x); }
+      Float64 ComputeRotation(Float64 x) const override { PYBIND11_OVERRIDE_PURE(Float64, RoarkBeam, ComputeRotation, x); }
+      Float64 ComputeDeflection(Float64 x) const override { PYBIND11_OVERRIDE_PURE(Float64, RoarkBeam, ComputeDeflection, x); }
    };
 
-   class_<RoarkBeamWrap, boost::noncopyable>("Beam",no_init)
-      .add_property("L",&RoarkBeam::GetL,&RoarkBeam::SetL)
-      .add_property("EI", &RoarkBeam::GetEI, &RoarkBeam::SetEI)
-      //.def("clone",pure_virtual(&RoarkBeam::CreateClone))
-      .def("reactions",pure_virtual(&RoarkBeam::GetReactions))
-      .def("moments", pure_virtual(&RoarkBeam::GetMoments))
-      .def("rotations", pure_virtual(&RoarkBeam::GetRotations))
-      .def("deflections", pure_virtual(&RoarkBeam::GetDeflections))
-      .def("shear",pure_virtual(&RoarkBeam::ComputeShear))
-      .def("moment", pure_virtual(&RoarkBeam::ComputeMoment))
-      .def("rotation", pure_virtual(&RoarkBeam::ComputeRotation))
-      .def("deflection",pure_virtual(&RoarkBeam::ComputeDeflection))
+   py::class_<RoarkBeam,PyRoarkBeam>(m,"Beam")
+      .def_property("L",&RoarkBeam::GetL,&RoarkBeam::SetL)
+      .def_property("EI", &RoarkBeam::GetEI, &RoarkBeam::SetEI)
+      .def("clone",&RoarkBeam::CreateClone)
+      .def("reactions",&RoarkBeam::GetReactions)
+      .def("moments", &RoarkBeam::GetMoments)
+      .def("rotations", &RoarkBeam::GetRotations)
+      .def("deflections", &RoarkBeam::GetDeflections)
+      .def("shear",&RoarkBeam::ComputeShear)
+      .def("moment", &RoarkBeam::ComputeMoment)
+      .def("rotation", &RoarkBeam::ComputeRotation)
+      .def("deflection", &RoarkBeam::ComputeDeflection)
       ;
 
-   class_<PPPartialUniformLoad, bases<RoarkBeamWrap>, boost::noncopyable>("PPPartialUniformLoad", no_init)
-      .def(init<Float64,Float64,Float64,Float64,Float64>())
-      .add_property("La", &PPPartialUniformLoad::GetLa, &PPPartialUniformLoad::SetLa)
-      .add_property("Lb", &PPPartialUniformLoad::GetLb, &PPPartialUniformLoad::SetLb)
-      .add_property("w", &PPPartialUniformLoad::GetW, &PPPartialUniformLoad::SetW)
+   class PyPPPartialUniformLoad : public PPPartialUniformLoad
+   {
+      using PPPartialUniformLoad::PPPartialUniformLoad; // Inherit constructors
+
+      using Result = std::pair<Float64, Float64>;
+      std::unique_ptr<RoarkBeam> CreateClone() const override { PYBIND11_OVERRIDE(std::unique_ptr<RoarkBeam>, RoarkBeam, CreateClone, /*no parameters*/); }
+      std::pair<Float64, Float64> GetReactions() const override { PYBIND11_OVERRIDE(Result, PPPartialUniformLoad, GetReactions, /*no parameters*/); }
+      std::pair<Float64, Float64> GetMoments() const override { PYBIND11_OVERRIDE(Result, PPPartialUniformLoad, GetMoments, /*no parameters*/); }
+      std::pair<Float64, Float64> GetRotations() const override { PYBIND11_OVERRIDE(Result, PPPartialUniformLoad, GetRotations, /*no parameters*/); }
+      std::pair<Float64, Float64> GetDeflections() const override { PYBIND11_OVERRIDE(Result, PPPartialUniformLoad, GetDeflections, /*no parameters*/); }
+      WBFL::System::SectionValue ComputeShear(Float64 x) const override { PYBIND11_OVERRIDE(WBFL::System::SectionValue, PPPartialUniformLoad, ComputeShear, x); }
+      WBFL::System::SectionValue ComputeMoment(Float64 x) const override { PYBIND11_OVERRIDE(WBFL::System::SectionValue, PPPartialUniformLoad, ComputeMoment, x); }
+      Float64 ComputeRotation(Float64 x) const override { PYBIND11_OVERRIDE(Float64, PPPartialUniformLoad, ComputeRotation, x); }
+      Float64 ComputeDeflection(Float64 x) const override { PYBIND11_OVERRIDE(Float64, PPPartialUniformLoad, ComputeDeflection, x); }
+   };
+
+   py::class_<PPPartialUniformLoad, RoarkBeam, PyPPPartialUniformLoad>(m, "PPPartialUniformLoad")
+      .def(py::init<Float64,Float64,Float64,Float64,Float64>())
+      .def_property("La", &PPPartialUniformLoad::GetLa, &PPPartialUniformLoad::SetLa)
+      .def_property("Lb", &PPPartialUniformLoad::GetLb, &PPPartialUniformLoad::SetLb)
+      .def_property("w", &PPPartialUniformLoad::GetW, &PPPartialUniformLoad::SetW)
       ;
 }

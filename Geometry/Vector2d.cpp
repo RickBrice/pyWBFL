@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Vector2d.h"
 
-using namespace boost::python;
 using namespace WBFL::Geometry;
+namespace py = pybind11;
 
-void export_Vector2d_types()
+void export_Vector2d_types(py::module_& m)
 {
    Vector2d& (Vector2d:: * SetSize)(Float64, Float64) = &Vector2d::SetSize;
    Vector2d& (Vector2d:: * SetSizeWithSize)(const Size2d&) = &Vector2d::SetSize;
@@ -17,15 +17,11 @@ void export_Vector2d_types()
    Float64(Vector2d:: * GetY)() const = &Vector2d::Y;
    void(Vector2d:: * SetY)(Float64) = &Vector2d::Y;
 
-   enum_<Vector2d::Side>("Side")
-      .value("left", Vector2d::Side::Left)
-      .value("right", Vector2d::Side::Right)
-      ;
-
-   class_<Vector2d>("Vector2d")
-      .def(init<const Point2d&, const Point2d&>())
-      .def(init<Float64, Float64>())
-      .def(init<const Size2d&>())
+   py::class_<Vector2d> vector2d(m, "Vector2d");
+   vector2d
+      .def(py::init<const Point2d&, const Point2d&>())
+      .def(py::init<Float64, Float64>())
+      .def(py::init<const Size2d&>())
       .def("angle_between", &Vector2d::AngleBetween)
       .def("projection", &Vector2d::Projection)
       .def("dot", &Vector2d::Dot)
@@ -34,29 +30,36 @@ void export_Vector2d_types()
       .def("get_size", &Vector2d::GetSize)
       .def("get_magnitude",&Vector2d::GetMagnitude)
       .def("get_relmagnitude",&Vector2d::GetRelMagnitude)
-      .def("reflect",&Vector2d::Reflect,return_internal_reference<>())
-      .def("normalize",&Vector2d::Normalize,return_internal_reference<>())
+      .def("reflect",&Vector2d::Reflect,py::return_value_policy::reference)
+      .def("normalize",&Vector2d::Normalize,py::return_value_policy::reference)
       .def("normalize_by",&Vector2d::NormalizeBy)
       .def("normal",&Vector2d::Normal) // update this for left/right and default value
-      .def("scale",&Vector2d::Scale,return_internal_reference<>())
+      .def("scale",&Vector2d::Scale,py::return_value_policy::reference)
       .def("scale_by",&Vector2d::ScaleBy)
-      .def("increment",&Vector2d::Increment,return_internal_reference<>())
+      .def("increment",&Vector2d::Increment,py::return_value_policy::reference)
       .def("increment_by",&Vector2d::IncrementBy)
-      .def("decrement",&Vector2d::Decrement,return_internal_reference<>())
+      .def("decrement",&Vector2d::Decrement,py::return_value_policy::reference)
       .def("decrement_by",&Vector2d::DecrementBy)
-      .def("set_direction",&Vector2d::SetDirection,return_internal_reference<>())
+      .def("set_direction",&Vector2d::SetDirection,py::return_value_policy::reference)
       .def("set_direction_by",&Vector2d::SetDirectionBy)
-      .def("set_size", SetSize, return_internal_reference<>())
-      .def("set_size", SetSizeWithSize, return_internal_reference<>())
-      .def("offset", Offset, return_internal_reference<>())
-      .def("offset", OffsetWithSize, return_internal_reference<>())
+      .def("set_size", SetSize, py::return_value_policy::reference)
+      .def("set_size", SetSizeWithSize, py::return_value_policy::reference)
+      .def("offset", Offset, py::return_value_policy::reference)
+      .def("offset", OffsetWithSize, py::return_value_policy::reference)
       .def("offset_by", OffsetBy)
       .def("offset_by", OffsetByWithSize)
-      .def("set_magnitude",&Vector2d::SetMagnitude,return_internal_reference<>())
+      .def("set_magnitude",&Vector2d::SetMagnitude,py::return_value_policy::reference)
       .def("set_magnitude_by", &Vector2d::SetMagnitudeBy)
-      .def("set_rotate", &Vector2d::Rotate, return_internal_reference<>())
+      .def("set_rotate", &Vector2d::Rotate, py::return_value_policy::reference)
       .def("set_rotate_by", &Vector2d::RotateBy)
-      .add_property("x",GetX,SetX)
-      .add_property("y",GetY,SetY)
+      .def_property("x",GetX,SetX)
+      .def_property("y",GetY,SetY)
+      ;
+
+
+   py::enum_<Vector2d::Side>(vector2d,"Side")
+      .value("left", Vector2d::Side::Left)
+      .value("right", Vector2d::Side::Right)
+      .export_values()
       ;
 }

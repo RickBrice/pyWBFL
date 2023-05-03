@@ -10,13 +10,7 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
-
-// these macros are required for proper linking to the debugging versions of python and the associated boost.python libraries
-#if defined _DEBUG
-#define BOOST_DEBUG_PYTHON
-#define BOOST_LINKING_PYTHON
-#endif
-#include <boost/python.hpp>
+#include <pybind11/pybind11.h>
 
 #include <GeomModel/GeomModel.h>
 

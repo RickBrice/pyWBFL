@@ -1,3 +1,5 @@
 #pragma once
 
-void export_Vector2d_types();
+namespace py = pybind11;
+class py::module_;
+void export_Vector2d_types(py::module_& m);
