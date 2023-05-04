@@ -4,14 +4,14 @@
 namespace py = pybind11;
 using namespace WBFL::Geometry;
 
-void export_primitives_types(py::module_& m)
+void export_Primitives_types(py::module_& m)
 {
 
    // function points for overloaded methods
    Float64(Size2d:: * Size2d_GetDx)() const = &Size2d::Dx;
-   void(Size2d:: * Size2d_SetDx)(Float64) = &Size2d::Dx;
+   Float64&(Size2d:: * Size2d_SetDx)() = &Size2d::Dx;
    Float64(Size2d:: * Size2d_GetDy)() const = &Size2d::Dy;
-   void(Size2d:: * Size2d_SetDy)(Float64) = &Size2d::Dy;
+   Float64&(Size2d:: * Size2d_SetDy)() = &Size2d::Dy;
    void(Size2d:: * Size2d_SetDimensions)(Float64, Float64) = &Size2d::SetDimensions;
    void(Size2d:: * Size2d_SetDimensionsWithPoint)(const Point2d&) = &Size2d::SetDimensions;
 
@@ -24,17 +24,18 @@ void export_primitives_types(py::module_& m)
       .def("magnitude", &Size2d::Magnitude)
       .def("set_dimensions", Size2d_SetDimensions)
       .def("set_dimensions", Size2d_SetDimensionsWithPoint)
+      .def("get_dimensions",&Size2d::GetDimensions)
       ;
 
    // function points for overloaded methods
    Float64(Point2d:: * Point2d_GetX)() const = &Point2d::X;
-   void (Point2d:: * Point2d_SetX)(Float64) = &Point2d::X;
+   Float64&(Point2d:: * Point2d_SetX)() = &Point2d::X;
    Float64(Point2d:: * Point2d_GetY)() const = &Point2d::Y;
-   void (Point2d:: * Point2d_SetY)(Float64) = &Point2d::Y;
-   void (Point2d:: * Point2d_Move1)(Float64, Float64) = &Point2d::Move;
-   void (Point2d:: * Point2d_Move2)(const Point2d&) = &Point2d::Move;
-   Float64(Point2d:: * Point2d_Distance1)(Float64, Float64) const = &Point2d::Distance;
-   Float64(Point2d:: * Point2d_Distance2)(const Point2d&) const = &Point2d::Distance;
+   Float64&(Point2d:: * Point2d_SetY)() = &Point2d::Y;
+   void (Point2d:: * Point2d_Move)(Float64, Float64) = &Point2d::Move;
+   void (Point2d:: * Point2d_MoveWithPoint)(const Point2d&) = &Point2d::Move;
+   Float64(Point2d:: * Point2d_Distance)(Float64, Float64) const = &Point2d::Distance;
+   Float64(Point2d:: * Point2d_DistanceWithPoint)(const Point2d&) const = &Point2d::Distance;
    Point2d& (Point2d:: * Point2d_Offset)(Float64, Float64) = &Point2d::Offset;
    Point2d& (Point2d:: * Point2d_OffsetWithSize)(const Size2d&) = &Point2d::Offset;
    Point2d(Point2d:: * Point2d_OffsetBy)(Float64, Float64) const = &Point2d::OffsetBy;
@@ -51,10 +52,10 @@ void export_primitives_types(py::module_& m)
       .def_property("y", Point2d_GetY, Point2d_SetY)
       .def("magnitude", &Point2d::Magnitude)
       .def("scale", &Point2d::Scale)
-      .def("move", Point2d_Move1)
-      .def("move", Point2d_Move2)
-      .def("distance", Point2d_Distance1)
-      .def("distance", Point2d_Distance2)
+      .def("move", Point2d_Move)
+      .def("move", Point2d_MoveWithPoint)
+      .def("distance", Point2d_Distance)
+      .def("distance", Point2d_DistanceWithPoint)
       .def("offset", Point2d_Offset, py::return_value_policy::reference)
       .def("offset", Point2d_OffsetWithSize, py::return_value_policy::reference)
       .def("offset_by", Point2d_OffsetBy)
@@ -83,13 +84,13 @@ void export_primitives_types(py::module_& m)
    Rect2d(Rect2d:: * Rect2d_BoundPointBy)(Float64, Float64) const = &Rect2d::BoundPointBy;
    Rect2d(Rect2d:: * Rect2d_BoundPointByWithPoint)(const Point2d&) const = &Rect2d::BoundPointBy;
    Float64(Rect2d:: * Rect2d_GetLeft)() const = &Rect2d::Left;
-   void (Rect2d:: * Rect2d_SetLeft)(Float64) = &Rect2d::Left;
+   Float64&(Rect2d:: * Rect2d_SetLeft)() = &Rect2d::Left;
    Float64(Rect2d:: * Rect2d_GetRight)() const = &Rect2d::Right;
-   void (Rect2d:: * Rect2d_SetRight)(Float64) = &Rect2d::Right;
+   Float64&(Rect2d:: * Rect2d_SetRight)() = &Rect2d::Right;
    Float64(Rect2d:: * Rect2d_GetTop)() const = &Rect2d::Top;
-   void (Rect2d:: * Rect2d_SetTop)(Float64) = &Rect2d::Top;
+   Float64&(Rect2d:: * Rect2d_SetTop)() = &Rect2d::Top;
    Float64(Rect2d:: * Rect2d_GetBottom)() const = &Rect2d::Bottom;
-   void (Rect2d:: * Rect2d_SetBottom)(Float64) = &Rect2d::Bottom;
+   Float64&(Rect2d:: * Rect2d_SetBottom)() = &Rect2d::Bottom;
    bool(Rect2d:: * Rect2d_ContainsPoint)(const Point2d&) const = &Rect2d::Contains;
    bool(Rect2d:: * Rect2d_ContainsRect)(const Rect2d&) const = &Rect2d::Contains;
 

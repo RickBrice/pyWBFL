@@ -13,9 +13,9 @@ void export_Vector2d_types(py::module_& m)
    Vector2d (Vector2d:: * OffsetBy)(Float64, Float64) const = &Vector2d::OffsetBy;
    Vector2d (Vector2d:: * OffsetByWithSize)(const Size2d&) const = &Vector2d::OffsetBy;
    Float64(Vector2d:: * GetX)() const = &Vector2d::X;
-   void(Vector2d:: * SetX)(Float64) = &Vector2d::X;
+   Float64&(Vector2d:: * SetX)() = &Vector2d::X;
    Float64(Vector2d:: * GetY)() const = &Vector2d::Y;
-   void(Vector2d:: * SetY)(Float64) = &Vector2d::Y;
+   Float64&(Vector2d:: * SetY)() = &Vector2d::Y;
 
    py::class_<Vector2d> vector2d(m, "Vector2d");
    vector2d
@@ -50,8 +50,8 @@ void export_Vector2d_types(py::module_& m)
       .def("offset_by", OffsetByWithSize)
       .def("set_magnitude",&Vector2d::SetMagnitude,py::return_value_policy::reference)
       .def("set_magnitude_by", &Vector2d::SetMagnitudeBy)
-      .def("set_rotate", &Vector2d::Rotate, py::return_value_policy::reference)
-      .def("set_rotate_by", &Vector2d::RotateBy)
+      .def("rotate", &Vector2d::Rotate, py::return_value_policy::reference)
+      .def("rotate_by", &Vector2d::RotateBy)
       .def_property("x",GetX,SetX)
       .def_property("y",GetY,SetY)
       ;
