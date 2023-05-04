@@ -39,6 +39,9 @@
     <ClInclude Include="LineSegment3d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Line2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -66,6 +69,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LineSegment3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Line2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

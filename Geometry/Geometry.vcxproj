@@ -120,6 +120,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Line2d.h" />
     <ClInclude Include="LineSegment2d.h" />
     <ClInclude Include="LineSegment3d.h" />
     <ClInclude Include="pch.h" />
@@ -131,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Line2d.cpp" />
     <ClCompile Include="LineSegment2d.cpp" />
     <ClCompile Include="LineSegment3d.cpp" />
     <ClCompile Include="pch.cpp">

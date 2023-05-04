@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "LineSegment2d.h"
+#include "pybind11/stl.h"
 
 using namespace WBFL::Geometry;
 

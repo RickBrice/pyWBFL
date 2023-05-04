@@ -57,7 +57,7 @@ void export_Vector2d_types(py::module_& m)
       ;
 
 
-   py::enum_<Vector2d::Side>(vector2d,"Side")
+   py::enum_<Vector2d::Side>(vector2d,"Vector2d.Side")
       .value("left", Vector2d::Side::Left)
       .value("right", Vector2d::Side::Right)
       .export_values()
