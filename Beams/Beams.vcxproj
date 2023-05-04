@@ -89,16 +89,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CompositeBeam.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PPIntermediateCouple.h" />
+    <ClInclude Include="PPIntermediateLoad.h" />
+    <ClInclude Include="PPPartialUniformLoad.h" />
+    <ClInclude Include="RoarkBeam.h" />
+    <ClInclude Include="Trampoline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CompositeBeam.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PPIntermediateCouple.cpp" />
+    <ClCompile Include="PPIntermediateLoad.cpp" />
+    <ClCompile Include="PPPartialUniformLoad.cpp" />
     <ClCompile Include="Roark.cpp" />
+    <ClCompile Include="RoarkBeam.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
