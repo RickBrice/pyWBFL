@@ -119,17 +119,22 @@
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Arc.h" />
+    <ClInclude Include="Circle2d.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Line2d.h" />
     <ClInclude Include="LineSegment2d.h" />
     <ClInclude Include="LineSegment3d.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Plane3d.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Primitives3d.h" />
     <ClInclude Include="Vector2d.h" />
     <ClInclude Include="Vector3d.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arc.cpp" />
+    <ClCompile Include="Circle2d.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Line2d.cpp" />
@@ -139,6 +144,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Plane3d.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Primitives3d.cpp" />
     <ClCompile Include="Vector2d.cpp" />
