@@ -7,7 +7,7 @@ namespace py = pybind11;
 
 void export_Circle2d_types(py::module_& m)
 {
-   Float64& (Circle2d:: * GetRadius)() = &Circle2d::GetRadius;
+   Float64 (Circle2d:: * GetRadius)() const = &Circle2d::GetRadius;
    Point2d& (Circle2d:: * GetCenter)() = &Circle2d::GetCenter;
 
    py::class_<Circle2d>(m, "Circle2d")
